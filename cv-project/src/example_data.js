@@ -13,7 +13,7 @@ export const exampleData = {
            pellentesque massa. Dignissim enim sit amet venenatis. Mi quis hendrerit dolor\
             magna eget est lorem. Nam aliquam sem et tortor consequat id. Ac placerat\
              vestibulum lectus mauris ultrices eros in cursus. Duis at consectetur lorem\
-              donec massa sapien. lorem20",
+              donec massa sapien.",
   },
   employment: [
     {

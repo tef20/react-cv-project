@@ -26,6 +26,13 @@ body {
 
 .section--header {
   color: var(--theme1);
+  display: flex;
+  justify-content: space-between;
+}
+
+.section--header button {
+  height: 1.8em;
+  width: 1.8em;
 }
 
 .section--content {
@@ -82,4 +89,8 @@ body {
 
 .entry--details-description {
   font-size: small;
+}
+
+.hidden {
+  display: none;
 }
