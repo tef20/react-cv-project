@@ -3,7 +3,7 @@ import profilePic from "../images/blank_avatar.webp";
 
 export default function Header() {
   return (
-    <header className="section">
+    <section className="section header">
       <div className='header--details'>
         <h1 className='header--name'>Joe Schmoe</h1>
         <h3 className='header--title'>Schmoe Consultant</h3>
@@ -17,6 +17,6 @@ export default function Header() {
           alt='profile pic'
         />
       </div>
-    </header>
+    </section>
   );
 }

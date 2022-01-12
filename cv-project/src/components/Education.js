@@ -2,7 +2,7 @@ import React from "react";
 import Section from "./Section";
 import Entry from "./Entry";
 
-export default function Education() {
+export default function Education(props) {
   const item = {
     start: "01/01/1992",
     end: "01/01/1993",
@@ -11,14 +11,16 @@ export default function Education() {
       "akvjnadkfvnadkjvnasvnlknkv vsav ljasvn savnds vasv sa asgv fgdavsad  aegaevadg aae eagvag a v geva fdaagbfd",
   };
 
-  const content = (
+  const items = props.data.education;
+
+  const entries = items.map((item) => (
     <Entry
       startDate={item.start}
       endDate={item.end}
-      title={item.title}
+      title={`${item.institution} | ${item.location}`}
       description={item.description}
     />
-  );
+  ));
 
-  return <Section title='Education' content={content} />;
+  return <Section title='Education' content={entries} />;
 }
