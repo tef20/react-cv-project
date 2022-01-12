@@ -1,0 +1,79 @@
+:root {
+  --theme1: #963634;
+  --theme2: #fcf6f1;
+  --theme3: rgb(32, 32, 32);
+}
+
+body {
+  width: 100%;
+  background-color: rgb(233, 231, 231);
+}
+
+.page {
+  margin: 2% auto;
+  width: 21cm;
+  height: 29.7cm;
+  background-color: var(--theme2);
+}
+
+.section {
+  padding: 2% 12%;
+  display: flex;
+  flex-direction: column; 
+  gap: 12px;
+}
+
+.section--header {
+  color: var(--theme1);
+}
+
+.section--content {
+  color: var(--theme3);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--theme1);
+  color: var(--theme2);
+}
+
+.header--details {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.header--profile-pic.container {
+  /* border-radius: 50%; */
+}
+
+.header--profile-pic {
+  width: 150px;
+  border-radius: 50%;
+}
+
+.entry {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.entry--date {
+  /* border: 1px red solid; */
+  flex: 0 0 20%;
+  font-size: xx-small;
+}
+
+.entry--details {
+  /* border: 1px blue solid; */
+  flex: 1 1 80%;
+}
+
+.entry--details-title {
+  font-size: small;
+}
+
+.entry--details-description {
+  font-size: small;
+}
