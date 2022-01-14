@@ -1,19 +1,62 @@
-import React from "react";
-import { exampleData as data } from "../example_data";
-import Profile from "./Profile";
-import Employment from "./Employment";
-import Education from "./Education";
-import Skills from "./Skills";
-import Header from "./Header";
+import React, { Component } from "react";
+import { exampleData } from "../example_data";
+import Section from "./Section";
+import Entry from "./Entry";
 
-export default function App() {
-  return (
-    <main className='page'>
-      <Header data={data} />
-      <Profile data={data} />
-      <Employment data={data} />
-      <Education data={data} />
-      <Skills data={data} />
-    </main>
-  );
+export default class App extends Component {
+  constructor() {
+    super();
+    this.state = { data: [...exampleData] };
+  }
+
+  addToSection(sectionName) {
+    this.setState((prevState) => ({
+      ...prevState,
+      [sectionName]: "hello",
+    }));
+  }
+
+  compileSections(data) {
+    return data.map((section) => {
+      const sectionName = Object.keys(section)[0];
+      const content = this.unpackEntries(section[sectionName]);
+      return <Section title={this.capitalize(sectionName)} content={content} />;
+    });
+  }
+
+  unpackEntries(entryData) {
+    return Array.isArray(entryData)
+      ? entryData.map((item) => {
+          return this.renderEntry(item);
+        })
+      : this.renderEntry(entryData);
+  }
+
+  capitalize(string) {
+    if (/[A-Za-z]/.test(string)) {
+      return string
+        .trim(" ")
+        .split()
+        .map((word) => word[0].toUpperCase() + word.slice(1))
+        .join(" ");
+    }
+  }
+
+  renderEntry(entry) {
+    // TODO think about coupling and direction of data from forms to page
+    const { start, end, title, description } = entry;
+    return (
+      <Entry
+        startDate={start}
+        endDate={end}
+        title={title}
+        description={description}
+      />
+    );
+  }
+
+  render() {
+    const { data } = this.state;
+    return <main className='page'>{this.compileSections(data)}</main>;
+  }
 }

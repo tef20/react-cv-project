@@ -3,7 +3,7 @@ import Entry from "./Entry";
 import Section from "./Section";
 
 export default function Employment(props) {
-  const items = props.data.employment;
+  const items = props.data;
 
   const entries = items.map((item) => (
     <Entry

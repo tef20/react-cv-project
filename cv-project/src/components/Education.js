@@ -3,7 +3,7 @@ import Section from "./Section";
 import Entry from "./Entry";
 
 export default function Education(props) {
-  const items = props.data.education;
+  const items = props.data;
 
   const entries = items.map((item) => (
     <Entry
