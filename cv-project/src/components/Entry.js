@@ -6,7 +6,15 @@ export default class Entry extends Component {
   }
 
   render() {
-    const { startDate, endDate, title, description } = this.props;
+    // types:
+    //  - blurb
+    //  -
+    const { startDate, endDate, descriptor, description, summaryDetails } =
+      this.props;
+    const title = Object.keys(summaryDetails).length
+      ? Object.values(summaryDetails).join(" | ")
+      : false;
+    console.log({ summaryDetails, title });
     return (
       <div className='entry'>
         {startDate && (
@@ -16,8 +24,13 @@ export default class Entry extends Component {
             <span className='entry--end-start'>{endDate}</span>
           </div>
         )}
+        {descriptor && (
+          <div className='entry--descriptor'>
+            <span className='entry--descriptor'>{descriptor}</span>
+          </div>
+        )}
         <div className='entry--details'>
-          {title && <h3 className='entry--details-title'>{title}</h3>}
+          {title.length && <h3 className='entry--details-title'>{title}</h3>}
           <p className='entry--details-description'>{description}</p>
         </div>
       </div>

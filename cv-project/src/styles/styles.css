@@ -70,9 +70,11 @@ body {
   display: flex;
   gap: 12px;
   align-items: baseline;
+  padding-bottom: 5px;
 }
 
-.entry--date {
+.entry--date,
+.entry--descriptor {
   /* border: 1px red solid; */
   flex: 0 0 20%;
   font-size: xx-small;

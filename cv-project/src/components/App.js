@@ -2,19 +2,20 @@ import React, { Component } from "react";
 import { exampleData } from "../example_data";
 import Section from "./Section";
 import Entry from "./Entry";
+import Header from "./Header";
 
 export default class App extends Component {
   constructor() {
     super();
-    this.state = { data: [...exampleData] };
+    this.state = { data: {...exampleData} };
   }
 
-  addToSection(sectionName) {
-    this.setState((prevState) => ({
-      ...prevState,
-      [sectionName]: "hello",
-    }));
-  }
+  // addToSection(sectionName) {
+  //   this.setState((prevState) => ({
+  //     ...prevState,
+  //     [sectionName]: "hello",
+  //   }));
+  // }
 
   compileSections(data) {
     return data.map((section) => {
@@ -27,7 +28,7 @@ export default class App extends Component {
   unpackEntries(entryData) {
     return Array.isArray(entryData)
       ? entryData.map((item) => {
-          return this.renderEntry(item);
+          return this.unpackEntries(item);
         })
       : this.renderEntry(entryData);
   }
@@ -44,19 +45,26 @@ export default class App extends Component {
 
   renderEntry(entry) {
     // TODO think about coupling and direction of data from forms to page
-    const { start, end, title, description } = entry;
+    const { startDate, endDate, description, descriptor, ...rest } = entry;
     return (
       <Entry
-        startDate={start}
-        endDate={end}
-        title={title}
+        startDate={startDate}
+        endDate={endDate}
         description={description}
+        descriptor={descriptor}
+        summaryDetails={rest}
       />
     );
   }
 
   render() {
-    const { data } = this.state;
-    return <main className='page'>{this.compileSections(data)}</main>;
+    const { candidate, sections } = this.state.data;
+    const compiledSections = this.compileSections(sections)
+    return (
+      <main className='page'>
+        <Header data={candidate} />
+        {compiledSections}
+      </main>
+    );
   }
 }
