@@ -87,21 +87,21 @@ export const exampleData = {
       ],
     },
     {
-      skills: [
+      projects: [
         {
-          descriptor: "skill1",
+          descriptor: "project 1",
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
         incididunt ut labore et dolore magna aliqua.",
         },
         {
-          descriptor: "skill2",
+          descriptor: "project 2",
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
         incididunt ut labore et dolore magna aliqua.",
         },
         {
-          descriptor: "skill3",
+          descriptor: "project 3",
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
         incididunt ut labore et dolore magna aliqua.",

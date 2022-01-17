@@ -8,7 +8,6 @@ export default class EditPopup extends Component {
 
   handleClick(e) {
     console.log(e.target);
-    // if (e.target )
   }
 
   render() {
@@ -16,7 +15,7 @@ export default class EditPopup extends Component {
       <div className='popup-overlay' onClick={this.props.togglePopup}>
         {this.props.data && (
           <div className='popup-container'>
-            <EntryForm data={this.props.data} />
+            <EntryForm formType={'education'} data={this.props.data} />
           </div>
         )}
       </div>

@@ -6,8 +6,20 @@ export default class EntryForm extends Component {
   //  - all end values must be strings (ie. not dates)
   constructor(props) {
     super(props);
-    this.state = {}
+    const entry =
+      props.data[props.section] || props.data.sections[props.section];
+    this.state = { ...JSON.parse(JSON.stringify(entry)) };
   }
+
+  // Add
+  // Remove
+  // Edit
+
+  // key info
+  // profile
+  // employment
+  // education
+  // projects?
 
   render() {
     return (
