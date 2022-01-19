@@ -6,9 +6,6 @@ export default class EntryForm extends Component {
   //  - all end values must be strings (ie. not dates)
   constructor(props) {
     super(props);
-    const entry =
-      props.data[props.section] || props.data.sections[props.section];
-    this.state = { ...JSON.parse(JSON.stringify(entry)) };
   }
 
   // Add
@@ -21,10 +18,30 @@ export default class EntryForm extends Component {
   // education
   // projects?
 
+  // 
+
   render() {
     return (
       <form>
-        <h1>hello</h1>
+        <h1>Add to Employment</h1>
+        <label htmlFor="startDate">Start date:</label>
+        <input type='date' name='startDate' id='' />
+        <label htmlFor="endDate">End date:</label>
+        <input type='date' name='endDate' id='' />
+        <label htmlFor="position"></label>
+        <input
+          type='text'
+          name="position"
+          value=''
+          placeholder='eg. Position | Company | Location'
+        />
+        <label htmlFor="description">Description:</label>
+        <input
+          type='textarea'
+          name="description"
+          value=''
+          placeholder='eg. Key responsibilities and achievements in this roll.'
+        />
       </form>
     );
   }

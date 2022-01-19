@@ -1,60 +1,77 @@
 export const exampleData = {
-  candidate: {
+  // taxonomy:
+  //  - basic info: object
+  //  - sections: array
+  //    - item: object, types: blurb (text only), list (array of entries)
+  //      - entry: object, types: simple (title, main), complex (date, title (position / descriptor, institution, location), main)
+  basicInfo: {
     name: "Joe Schmoe",
     jobTitle: "Schmoe Consultant",
     phone: "+447890123456",
     email: "schmoej@email.com",
+    photo: "www.example.com",
   },
   sections: [
     {
-      profile: {
-        description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\
+      name: "profile",
+      type: "simple",
+      items: [
+        {
+          id: "profile0",
+          description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\
          incididunt ut labore et dolore magna aliqua. Ac auctor augue mauris augue neque\
           gravida in fermentum et. Ut morbi tincidunt augue interdum velit euismod in\
            pellentesque massa. Dignissim enim sit amet venenatis. Mi quis hendrerit dolor\
             magna eget est lorem. Nam aliquam sem et tortor consequat id. Ac placerat\
              vestibulum lectus mauris ultrices eros in cursus. Duis at consectetur lorem\
               donec massa sapien.",
-      },
+        },
+      ],
     },
     {
-      employment: [
+      name: "employment",
+      type: "date",
+      items: [
         {
+          id: "employment0",
           startDate: "01/01/1992",
           endDate: "01/01/1992",
-          role: "Email Composer",
-          employer: "Great Company",
+          descriptor: "Email Composer",
+          institution: "Great Company",
           location: "London",
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
         incididunt ut labore et dolore magna aliqua.",
         },
         {
+          id: "employment1",
           startDate: "01/01/1992",
           endDate: "01/01/1992",
-          role: "Email Composer",
-          employer: "Great Company",
+          descriptor: "Email Composer",
+          institution: "Great Company",
           location: "London",
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
         incididunt ut labore et dolore magna aliqua.",
         },
         {
+          id: "employment2",
           startDate: "01/01/1992",
           endDate: "01/01/1992",
-          role: "Email Composer",
-          employer: "Great Company",
+          descriptor: "Email Composer",
+          institution: "Great Company",
           location: "London",
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
         incididunt ut labore et dolore magna aliqua.",
         },
         {
+          id: "employment3",
           startDate: "01/01/1992",
           endDate: "01/01/1992",
-          role: "Email Composer",
-          employer: "Great Company",
+          descriptor: "Email Composer",
+          institution: "Great Company",
           location: "London",
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
@@ -63,11 +80,14 @@ export const exampleData = {
       ],
     },
     {
-      education: [
+      name: "education",
+      type: "date",
+      items: [
         {
+          id: "education0",
           startDate: "01/01/1992",
           endDate: "01/01/1992",
-          achievements: "BA Street Smarts",
+          descriptor: "BA Street Smarts",
           institution: "Uni of Life",
           location: "London",
           description:
@@ -75,9 +95,10 @@ export const exampleData = {
         incididunt ut labore et dolore magna aliqua.",
         },
         {
+          id: "education1",
           startDate: "01/01/1992",
           endDate: "01/01/1992",
-          achievements: "A Level",
+          descriptor: "A Level",
           institution: "Cool Skool",
           location: "London",
           description:
@@ -87,20 +108,25 @@ export const exampleData = {
       ],
     },
     {
-      projects: [
+      name: "projects",
+      type: "nodate",
+      items: [
         {
+          id: "projects0",
           descriptor: "project 1",
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
         incididunt ut labore et dolore magna aliqua.",
         },
         {
+          id: "projects1",
           descriptor: "project 2",
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
         incididunt ut labore et dolore magna aliqua.",
         },
         {
+          id: "projects2",
           descriptor: "project 3",
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
