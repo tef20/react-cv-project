@@ -18,7 +18,7 @@ export default class Entry extends Component {
   toggleButtonHidden = (value) => this.toggleState("buttonHidden", value);
 
   render() {
-    const { type, items } = this.props;
+    const { type, items, section } = this.props;
 
     return (
       <div className='entries'>
@@ -75,8 +75,11 @@ export default class Entry extends Component {
                   className={`editButton ${
                     this.state.buttonHidden ? "hidden" : ""
                   }`}
-                  name={id}
-                  onClick={() => console.log(id)}
+                  name={`${section}#${id}`}
+                  onClick={(e) => {
+                    console.log({ section, id });
+                    // todo open form to edit section, id
+                  }}
                 >
                   ✏️
                 </button>

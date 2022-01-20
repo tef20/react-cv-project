@@ -12,10 +12,16 @@ export default class EditPopup extends Component {
 
   render() {
     return (
-      <div className='popup-overlay' onClick={this.props.togglePopup}>
-        {this.props.data && (
+      <div
+        id='popup-overlay'
+        className='popup-overlay'
+        onClick={(e) =>
+          e.target.id === "popup-overlay" && this.props.togglePopup()
+        }
+      >
+        {this.props.content && (
           <div className='popup-container'>
-            <EntryForm formType={'education'} data={this.props.data} />
+            {this.props.content}
           </div>
         )}
       </div>
