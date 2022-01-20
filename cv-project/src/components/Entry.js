@@ -69,16 +69,18 @@ export default class Entry extends Component {
                 )}
                 <p className='entry--details-description'>{description}</p>
               </div>
-              <button
-                type='button'
-                className={`editButton ${
-                  this.state.buttonHidden ? "hidden" : ""
-                }`}
-                name={id}
-                onClick={() =>  console.log(id)}
-              >
-                ✏️
-              </button>
+              <div>
+                <button
+                  type='button'
+                  className={`editButton ${
+                    this.state.buttonHidden ? "hidden" : ""
+                  }`}
+                  name={id}
+                  onClick={() => console.log(id)}
+                >
+                  ✏️
+                </button>
+              </div>
             </div>
           );
         })}

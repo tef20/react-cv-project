@@ -3,7 +3,6 @@ import profilePic from "../images/blank_avatar.webp";
 
 export default function Header(props) {
   const { name, jobTitle, phone, email } = props.data;
-  console.log(props.data);
   return (
     <section className='section header'>
       <div className='header--details'>

@@ -14,7 +14,7 @@ export default class App extends Component {
     return sectionsData.map((section) => {
       const { name } = section;
       const content = <Entry type={section.type} items={section.items} />;
-      return <Section title={this.capitalize(name)} content={content} />;
+      return <Section key={name} title={this.capitalize(name)} content={content} />;
     });
   }
 
