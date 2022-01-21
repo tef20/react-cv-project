@@ -66,17 +66,6 @@ export const exampleData = {
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
         incididunt ut labore et dolore magna aliqua.",
         },
-        {
-          id: "employment3",
-          startDate: "01/01/1992",
-          endDate: "01/01/1992",
-          descriptor: "Email Composer",
-          institution: "Great Company",
-          location: "London",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
-        incididunt ut labore et dolore magna aliqua.",
-        },
       ],
     },
     {

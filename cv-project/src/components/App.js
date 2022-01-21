@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import { exampleData } from "../example_data";
 import Section from "./Section";
 import Header from "./Header";
+import { genID } from "../idGenerator";
 
 export default class App extends Component {
   constructor() {
     super();
-    this.state = { ...exampleData };
+    this.state = { ...exampleData, idGenerator: genID() };
   }
 
   compileSections(sectionsData) {
@@ -17,6 +18,7 @@ export default class App extends Component {
           key={name}
           data={section}
           updateSectionItems={this.updateSectionItems}
+          idGenerator={this.state.idGenerator}
         />
       );
     });
@@ -24,7 +26,6 @@ export default class App extends Component {
 
   updateSectionItems = (sectionName, newItem) => {
     this.setState((prevState) => {
-      console.log({ prevState, sectionName, newItem });
       return {
         ...prevState,
         sections: prevState.sections.map((section) =>
@@ -46,8 +47,9 @@ export default class App extends Component {
       : items.concat(newItem);
   };
 
+  removeItem = (section, itemId) => {this.setState(prevState => prevState.sections)}
+
   render() {
-    console.log({ STATE: this.state });
     const { basicInfo, sections } = this.state;
     const compiledSections = this.compileSections(sections);
     return (

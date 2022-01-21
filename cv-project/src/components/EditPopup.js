@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import EntryForm from "./EntryForm";
 
 export default class EditPopup extends Component {
   constructor(props) {
@@ -20,9 +19,7 @@ export default class EditPopup extends Component {
         }
       >
         {this.props.content && (
-          <div className='popup-container'>
-            {this.props.content}
-          </div>
+          <div className='popup-container'>{this.props.content}</div>
         )}
       </div>
     );

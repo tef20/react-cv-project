@@ -6,7 +6,11 @@ export default class EntryForm extends Component {
   //  - all end values must be strings (ie. not dates)
   constructor(props) {
     super(props);
-    this.state = {}; // editting, take from props
+    this.state = {
+      ...this.props.data.items.find(
+        (item) => item.id === this.props.itemUnderEdit
+      ),
+    }; // editting, take from props
   }
 
   // Add
@@ -25,14 +29,12 @@ export default class EntryForm extends Component {
   };
 
   render() {
-    const { section } = this.props;
+    const { title, data } = this.props;
+    const { name } = data;
+    console.log({ STATE: this.state });
     return (
-      <form
-        onSubmit={(e) =>
-          this.props.handleFormSubmit(e, section, this.state)
-        }
-      >
-        <h1>Add to Employment</h1>
+      <form onSubmit={(e) => this.props.handleFormSubmit(e, name, this.state)}>
+        <h1>{`Add to ${title}`}</h1>
         <label htmlFor='startDate'>Start date:</label>
         <input
           type='date'
@@ -49,13 +51,29 @@ export default class EntryForm extends Component {
           onChange={this.handleChange}
           value={this.state["endDate"] || ""}
         />
-        <label htmlFor='position'>Position:</label>
+        <label htmlFor='descriptor'>Position:</label>
         <input
           type='text'
-          name='position'
+          name='descriptor'
           onChange={this.handleChange}
-          value={this.state["position"] || ""}
-          placeholder='eg. Position | Company | Location'
+          value={this.state["descriptor"] || ""}
+          placeholder='eg. Position'
+        />
+        <label htmlFor='institution'>Company:</label>
+        <input
+          type='text'
+          name='institution'
+          onChange={this.handleChange}
+          value={this.state["institution"] || ""}
+          placeholder='eg. Company'
+        />
+        <label htmlFor='location'>Location:</label>
+        <input
+          type='text'
+          name='location'
+          onChange={this.handleChange}
+          value={this.state["location"] || ""}
+          placeholder='eg. City'
         />
         <label htmlFor='description'>Description:</label>
         <input
@@ -63,7 +81,7 @@ export default class EntryForm extends Component {
           name='description'
           onChange={this.handleChange}
           value={this.state["description"] || ""}
-          placeholder='eg. Key responsibilities and achievements in this roll.'
+          placeholder='eg. Responsibilities and achievements.'
         />
         <button>hit me</button>
       </form>

@@ -36,10 +36,22 @@ export default class Section extends Component {
   handleFormSubmit = (e, section, values) => {
     e.preventDefault();
     // validation
-    console.log(e, section, values);
-    this.props.updateSectionItems(section, values);
+    this.props.updateSectionItems(section, {
+      id: this.props.idGenerator.newID(),
+      ...values,
+    });
     this.setState({ itemUnderEdit: "" });
+    this.togglePopup(false);
   };
+
+  handleEdit = (itemId) => {
+    this.setState({ itemUnderEdit: itemId });
+    this.togglePopup();
+  };
+
+  handleRemove = (itemId) => {
+    
+  }
 
   render() {
     const { name, type, items } = this.props.data;
@@ -56,8 +68,9 @@ export default class Section extends Component {
             togglePopup={this.togglePopup}
             content={
               <EntryForm
-                section={name}
-                item={this.state.itemUnderEdit}
+                title={title}
+                data={this.props.data}
+                itemUnderEdit={this.state.itemUnderEdit}
                 handleFormSubmit={this.handleFormSubmit}
               />
             }
@@ -65,24 +78,26 @@ export default class Section extends Component {
         )}
         <div className='section--header'>
           <h2 className='section--header-title'>{title}</h2>
-          <button
-            className={`section--add ${
-              this.state.buttonHidden ? "hidden" : ""
-            }`}
-            type='button'
-            name={title}
-            onClick={this.togglePopup}
-          >
-            ➕
-          </button>
+          {type !== "simple" && (
+            <button
+              className={`section--add ${
+                this.state.buttonHidden ? "hidden" : ""
+              }`}
+              type='button'
+              name={title}
+              onClick={this.togglePopup}
+            >
+              ➕
+            </button>
+          )}
         </div>
         <div className='section--content'>
           {
             <Entry
-              section={name}
-              type={type}
-              items={items}
+              data={this.props.data}
               handleFormSubmit={this.handleFormSubmit}
+              handleEdit={(itemToEdit) => this.handleEdit(itemToEdit)}
+              // handleRemove={()}
             />
           }
         </div>
