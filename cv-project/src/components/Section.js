@@ -49,9 +49,7 @@ export default class Section extends Component {
     this.togglePopup();
   };
 
-  handleRemove = (itemId) => {
-    
-  }
+  handleRemove = (itemId) => {};
 
   render() {
     const { name, type, items } = this.props.data;

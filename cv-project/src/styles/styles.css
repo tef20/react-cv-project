@@ -67,23 +67,26 @@ body {
   border-radius: 50%;
 }
 
-.entry {
+.entry--wrapper {
   display: flex;
-  /* flex-direction: column; */
+  align-items: baseline;
   gap: 12px;
-  /* align-items: baseline; */
   padding-bottom: 5px;
 }
 
+.entry {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
 .entry--sidebar {
-  /* border: 1px red solid; */
-  flex: 0 0 20%;
+  /* flex-shrink: 0; */
   font-size: xx-small;
 }
 
 .entry--details {
   /* border: 1px blue solid; */
-  flex: 1 1 80%;
 }
 
 .entry--details-title {
@@ -94,7 +97,16 @@ body {
   font-size: small;
 }
 
-.editButton {
+.entry--buttons {
+  width: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.editButton, 
+.deleteButton {
   border-style: none;
   background-color: transparent;
   cursor: pointer;
@@ -102,6 +114,10 @@ body {
 
 .hidden {
   display: none;
+}
+
+.faded {
+  opacity: 0.5;
 }
 
 .popup-overlay {

@@ -3,6 +3,7 @@ import { exampleData } from "../example_data";
 import Section from "./Section";
 import Header from "./Header";
 import { genID } from "../idGenerator";
+import Education from "./Education";
 
 export default class App extends Component {
   constructor() {
@@ -55,7 +56,8 @@ export default class App extends Component {
     return (
       <main className='page'>
         <Header data={basicInfo} />
-        {compiledSections}
+        <Education />
+        {/* {compiledSections} */}
       </main>
     );
   }
