@@ -2,9 +2,17 @@ import React, { Component } from "react";
 import Subsection from "./Subsection";
 import Entry from "./EntryWrapper";
 import EntryForm from "./EntryForm";
+import templates from "./itemTemplates";
 import { exampleData as data } from "../example_data2";
 import { barSeperatedList, genID } from "./tools";
 import PopupOverlay from "./PopupOverlay";
+import {
+  addItem,
+  editItem,
+  handleFormSubmit,
+  removeItem,
+  toggleFormPopup,
+} from "./formTools";
 
 export default class Education extends Component {
   constructor(props) {
@@ -14,80 +22,14 @@ export default class Education extends Component {
       formPopup: false,
       items: [...data.education],
     };
+    this.handleFormSubmit = handleFormSubmit.bind(this);
+    this.toggleFormPopup = toggleFormPopup.bind(this);
+    this.addItem = addItem.bind(this);
+    this.editItem = editItem.bind(this);
+    this.removeItem = removeItem.bind(this);
   }
 
   ids = genID();
-
-  itemTemplate = [
-    {
-      name: "startDate",
-      type: "date",
-      label: "Start Date",
-    },
-    {
-      name: "endDate",
-      type: "date",
-      label: "End Date",
-    },
-    {
-      name: "descriptor",
-      type: "text",
-      label: "Qualification",
-    },
-    {
-      name: "institution",
-      type: "text",
-      label: "Institution",
-    },
-    {
-      name: "location",
-      type: "text",
-      label: "Location",
-    },
-    {
-      name: "description",
-      type: "textarea",
-      label: "Description",
-    },
-  ];
-
-  toggleFormPopup = (id) => {
-    this.setState((prevState) => ({
-      idUnderEdit: id,
-      formPopup: !prevState.formPopup,
-    }));
-  };
-
-  handleFormSubmit = (e, itemId, item) => {
-    e.preventDefault();
-    if (this.state.items.some((item) => item.id === itemId)) {
-      this.editItem(itemId, item);
-    } else {
-      this.addItem(item);
-    }
-  };
-
-  addItem = (newItem, id) => {
-    newItem["id"] = id ?? this.ids.newID();
-    this.setState((prevState) => ({
-      items: [...prevState.items, newItem],
-    }));
-  };
-
-  editItem = (id, newItem) => {
-    newItem.id = id;
-    this.setState((prevState) => ({
-      items: [
-        ...prevState.items.map((item) => (item.id === id ? newItem : item)),
-      ],
-    }));
-  };
-
-  removeItem = (id) => {
-    this.setState((prevState) => ({
-      items: prevState.items.filter((item) => item.id !== id),
-    }));
-  };
 
   render() {
     const entries = this.state.items.map((item) => {
@@ -134,7 +76,6 @@ export default class Education extends Component {
       );
     });
 
-    console.log({ id2: this.state.idUnderEdit });
     return (
       <>
         {this.state.formPopup && (
@@ -143,7 +84,7 @@ export default class Education extends Component {
               <EntryForm
                 formHeader={"Education"}
                 itemId={this.state.idUnderEdit}
-                itemTemplate={this.itemTemplate}
+                itemTemplate={templates['education']}
                 formSubmitHandler={this.handleFormSubmit}
                 togglePopup={this.toggleFormPopup}
                 existingEntry={this.state.items.find(

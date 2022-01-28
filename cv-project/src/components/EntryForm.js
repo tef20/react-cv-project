@@ -20,7 +20,6 @@ export default class EntryForm extends Component {
   };
 
   handleSubmit = (e, id) => {
-    this.props.togglePopup();
     this.props.formSubmitHandler(e, id, { ...this.state });
   };
 

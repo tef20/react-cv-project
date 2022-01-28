@@ -19,9 +19,6 @@ export default class Section extends Component {
   };
 
   render() {
-    // title
-    // buttons
-    // content
     const { props, state } = this;
     return (
       <section
