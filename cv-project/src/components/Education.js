@@ -3,7 +3,7 @@ import Subsection from "./Subsection";
 import Entry from "./EntryWrapper";
 import EntryForm from "./EntryForm";
 import templates from "./itemTemplates";
-import { exampleData as data } from "../example_data2";
+import { exampleData as data } from "../example_data";
 import { barSeperatedList, genID } from "./tools";
 import PopupOverlay from "./PopupOverlay";
 import {
@@ -22,6 +22,7 @@ export default class Education extends Component {
       formPopup: false,
       items: [...data.education],
     };
+
     this.handleFormSubmit = handleFormSubmit.bind(this);
     this.toggleFormPopup = toggleFormPopup.bind(this);
     this.addItem = addItem.bind(this);
@@ -84,7 +85,7 @@ export default class Education extends Component {
               <EntryForm
                 formHeader={"Education"}
                 itemId={this.state.idUnderEdit}
-                itemTemplate={templates['education']}
+                itemTemplate={templates["education"]}
                 formSubmitHandler={this.handleFormSubmit}
                 togglePopup={this.toggleFormPopup}
                 existingEntry={this.state.items.find(

@@ -1,13 +1,20 @@
-import React from "react";
+import React, { Component } from "react";
 import Section from "./Section";
 import Entry from "./Entry";
+import { exampleData } from "../example_data";
+import templates from "./itemTemplates";
 
-export default function Profile(props) {
-  const content = (
+export default class Profile extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { item: exampleData.profile };
+  }
+  content = (
     <Entry
-      description={props.data.description}
-      startDate={props.data.startDate}
+      description={this.item.description}
     />
   );
-  return <Section title='Profile' content={content} />;
+  render() {
+    return <Section title='Profile' content={this.content} />;
+  }
 }

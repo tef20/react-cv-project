@@ -9,119 +9,98 @@ export const exampleData = {
     jobTitle: "Schmoe Consultant",
     phone: "+447890123456",
     email: "schmoej@email.com",
-    photo: "www.example.com",
+    picture: "www.example.com",
   },
-  sections: [
-    {
-      name: "profile",
-      type: "simple",
-      items: [
-        {
-          id: "profile0",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\
+  profile: {
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\
          incididunt ut labore et dolore magna aliqua. Ac auctor augue mauris augue neque\
           gravida in fermentum et. Ut morbi tincidunt augue interdum velit euismod in\
            pellentesque massa. Dignissim enim sit amet venenatis. Mi quis hendrerit dolor\
             magna eget est lorem. Nam aliquam sem et tortor consequat id. Ac placerat\
              vestibulum lectus mauris ultrices eros in cursus. Duis at consectetur lorem\
               donec massa sapien.",
-        },
-      ],
+  },
+  employment: [
+    {
+      id: "employment0",
+      startDate: "01/01/1992",
+      endDate: "01/01/1992",
+      descriptor: "Email Composer",
+      institution: "Great Company",
+      location: "London",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
+        incididunt ut labore et dolore magna aliqua.",
     },
     {
-      name: "employment",
-      type: "date",
-      items: [
-        {
-          id: "employment0",
-          startDate: "01/01/1992",
-          endDate: "01/01/1992",
-          descriptor: "Email Composer",
-          institution: "Great Company",
-          location: "London",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
+      id: "employment1",
+      startDate: "01/01/1992",
+      endDate: "01/01/1992",
+      descriptor: "Email Composer",
+      institution: "Great Company",
+      location: "London",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
         incididunt ut labore et dolore magna aliqua.",
-        },
-        {
-          id: "employment1",
-          startDate: "01/01/1992",
-          endDate: "01/01/1992",
-          descriptor: "Email Composer",
-          institution: "Great Company",
-          location: "London",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
-        incididunt ut labore et dolore magna aliqua.",
-        },
-        {
-          id: "employment2",
-          startDate: "01/01/1992",
-          endDate: "01/01/1992",
-          descriptor: "Email Composer",
-          institution: "Great Company",
-          location: "London",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
-        incididunt ut labore et dolore magna aliqua.",
-        },
-      ],
     },
     {
-      name: "education",
-      type: "date",
-      items: [
-        {
-          id: "education0",
-          startDate: "01/01/1992",
-          endDate: "01/01/1992",
-          descriptor: "BA Street Smarts",
-          institution: "Uni of Life",
-          location: "London",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
+      id: "employment2",
+      startDate: "01/01/1992",
+      endDate: "01/01/1992",
+      descriptor: "Email Composer",
+      institution: "Great Company",
+      location: "London",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
         incididunt ut labore et dolore magna aliqua.",
-        },
-        {
-          id: "education1",
-          startDate: "01/01/1992",
-          endDate: "01/01/1992",
-          descriptor: "A Level",
-          institution: "Cool Skool",
-          location: "London",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
+    },
+  ],
+  education: [
+    {
+      id: "education0",
+      startDate: "01/01/1992",
+      endDate: "01/01/1992",
+      descriptor: "BA Street Smarts",
+      institution: "Uni of Life",
+      location: "London",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
         incididunt ut labore et dolore magna aliqua.",
-        },
-      ],
     },
     {
-      name: "projects",
-      type: "nodate",
-      items: [
-        {
-          id: "projects0",
-          descriptor: "project 1",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
+      id: "education1",
+      startDate: "01/01/1992",
+      endDate: "01/01/1992",
+      descriptor: "A Level",
+      institution: "Cool Skool",
+      location: "London",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
         incididunt ut labore et dolore magna aliqua.",
-        },
-        {
-          id: "projects1",
-          descriptor: "project 2",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
+    },
+  ],
+  projects: [
+    {
+      id: "projects0",
+      descriptor: "project 1",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
         incididunt ut labore et dolore magna aliqua.",
-        },
-        {
-          id: "projects2",
-          descriptor: "project 3",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
+    },
+    {
+      id: "projects1",
+      descriptor: "project 2",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
         incididunt ut labore et dolore magna aliqua.",
-        },
-      ],
+    },
+    {
+      id: "projects2",
+      descriptor: "project 3",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
+        incididunt ut labore et dolore magna aliqua.",
     },
   ],
 };

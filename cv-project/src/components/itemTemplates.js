@@ -1,14 +1,14 @@
 const templates = {
-  basic: [
+  basicInfo: [
     {
-      name: "candidateName",
+      name: "name",
       type: "text",
       label: "Your Name",
     },
     {
-      name: "specialization",
+      name: "jobTitle",
       type: "text",
-      label: "Specialization",
+      label: "Position Sought",
     },
     {
       name: "phone",
@@ -22,7 +22,7 @@ const templates = {
     },
     {
       name: "picture",
-      type: "url",
+      type: "text",
       label: "picture",
     },
   ],

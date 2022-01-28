@@ -4,7 +4,7 @@ import Entry from "./EntryWrapper";
 import EntryForm from "./EntryForm";
 import templates from "./itemTemplates";
 import { exampleData as data } from "../example_data";
-import { barSeperatedList, genID } from "./tools";
+import { barSeperatedList, capitalize, genID } from "./tools";
 import PopupOverlay from "./PopupOverlay";
 import {
   addItem,
@@ -14,13 +14,13 @@ import {
   toggleFormPopup,
 } from "./formTools";
 
-export default class Employment extends Component {
+export default class Projects extends Component {
   constructor(props) {
     super(props);
     this.state = {
       idUnderEdit: null,
       formPopup: false,
-      items: [...data.employment],
+      items: [...data.projects],
     };
 
     this.handleFormSubmit = handleFormSubmit.bind(this);
@@ -47,16 +47,9 @@ export default class Employment extends Component {
       const content = (
         <div className='entry'>
           <div className='entry--sidebar'>
-            <div className='entry-date'>
-              <span className='entry--date-start'>{startDate}</span>
-              {" - "}
-              <span className='entry--end-start'>{endDate}</span>
-            </div>
+            <span className="entry--sidebar-descriptor">{capitalize(descriptor)}</span>
           </div>
           <div className='entry--details'>
-            <h3 className='entry--details-title'>
-              {barSeperatedList(descriptor, institution, location)}
-            </h3>
             <p className='entry--details-description'>{description}</p>
           </div>
         </div>
@@ -83,9 +76,9 @@ export default class Employment extends Component {
           <PopupOverlay
             content={
               <EntryForm
-                formHeader={"Employment"}
+                formHeader={"Projects"}
                 itemId={this.state.idUnderEdit}
-                itemTemplate={templates["employment"]}
+                itemTemplate={templates["projects"]}
                 formSubmitHandler={this.handleFormSubmit}
                 togglePopup={this.toggleFormPopup}
                 existingEntry={this.state.items.find(
@@ -97,7 +90,7 @@ export default class Employment extends Component {
           />
         )}
         <Subsection
-          title={"Employment"}
+          title={"Projects"}
           addEntryHandler={true} // add handler?
           content={entries}
           addItem={() => this.toggleFormPopup(this.ids.newID())}

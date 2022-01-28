@@ -8,7 +8,6 @@ export default class Entry extends Component {
     };
   }
 
-  // todo tidy: put in sep module
   toggleState = (key, value) => {
     this.setState((prevState) => ({
       [key]: value ?? !prevState[key],
@@ -21,7 +20,6 @@ export default class Entry extends Component {
     const { content, id } = this.props;
     return (
       <div
-        // key={id}
         className='entry--wrapper'
         onMouseEnter={(e) => {
           e.stopPropagation();

@@ -22,4 +22,10 @@ function genID(lastID) {
   return { newID };
 }
 
-export { capitalize, barSeperatedList, genID };
+function toggleState(key, value) {
+  this.setState((prevState) => ({
+    [key]: value ?? !prevState[key],
+  }));
+}
+
+export { capitalize, barSeperatedList, genID, toggleState };
