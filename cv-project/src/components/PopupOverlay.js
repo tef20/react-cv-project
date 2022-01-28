@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 export default class PopupOverlay extends Component {
-  closePopup(e) {
+  closePopup = (e) => {
     e.target.id === "popup-overlay" && this.props.togglePopup();
   }
 

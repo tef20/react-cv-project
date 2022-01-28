@@ -13,4 +13,13 @@ function barSeperatedList(...argsList) {
   return argsList.filter((elem) => elem).join(" | ");
 }
 
-export { capitalize, barSeperatedList };
+function genID(lastID) {
+  // check for uniqueness / existing ID's in local storage
+  let id = lastID || -1;
+  function newID() {
+    return ++id;
+  }
+  return { newID };
+}
+
+export { capitalize, barSeperatedList, genID };

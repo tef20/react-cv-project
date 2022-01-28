@@ -6,83 +6,44 @@ export default class EntryForm extends Component {
   //  - all end values must be strings (ie. not dates)
   constructor(props) {
     super(props);
-    this.state = {
-      ...this.props.data.items.find(
-        (item) => item.id === this.props.itemUnderEdit
-      ),
-    }; // editting, take from props
+    this.state = {};
   }
 
-  // Add
-  // Remove
-  // Edit
+  static getDerivedStateFromProps(props, state) {
+    return !Object.keys(state).length && props.existingEntry
+      ? { ...props.existingEntry }
+      : null;
+  }
 
-  // key info
-  // profile
-  // employment
-  // education
-  // projects?
-
-  //
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  handleSubmit = (e, id) => {
+    this.props.togglePopup();
+    this.props.formSubmitHandler(e, id, { ...this.state });
+  };
+
   render() {
-    const { title, data } = this.props;
-    const { name } = data;
-    console.log({ STATE: this.state });
+    const { itemId, formHeader, itemTemplate } = this.props;
     return (
-      <form onSubmit={(e) => this.props.handleFormSubmit(e, name, this.state)}>
-        <h1>{`Add to ${title}`}</h1>
-        <label htmlFor='startDate'>Start date:</label>
-        <input
-          type='date'
-          name='startDate'
-          id=''
-          onChange={this.handleChange}
-          value={this.state["startDate"] || ""}
-        />
-        <label htmlFor='endDate'>End date:</label>
-        <input
-          type='date'
-          name='endDate'
-          id=''
-          onChange={this.handleChange}
-          value={this.state["endDate"] || ""}
-        />
-        <label htmlFor='descriptor'>Position:</label>
-        <input
-          type='text'
-          name='descriptor'
-          onChange={this.handleChange}
-          value={this.state["descriptor"] || ""}
-          placeholder='eg. Position'
-        />
-        <label htmlFor='institution'>Company:</label>
-        <input
-          type='text'
-          name='institution'
-          onChange={this.handleChange}
-          value={this.state["institution"] || ""}
-          placeholder='eg. Company'
-        />
-        <label htmlFor='location'>Location:</label>
-        <input
-          type='text'
-          name='location'
-          onChange={this.handleChange}
-          value={this.state["location"] || ""}
-          placeholder='eg. City'
-        />
-        <label htmlFor='description'>Description:</label>
-        <input
-          type='textarea'
-          name='description'
-          onChange={this.handleChange}
-          value={this.state["description"] || ""}
-          placeholder='eg. Responsibilities and achievements.'
-        />
+      <form onSubmit={(e) => this.handleSubmit(e, itemId)}>
+        <h1>{formHeader}</h1>
+        {itemTemplate.map((item) => {
+          const { name, type, label } = item;
+          return (
+            <React.Fragment key={name}>
+              <label htmlFor={name}>{label}</label>
+              <input
+                type={type}
+                name={name}
+                onChange={this.handleChange}
+                value={this.state[name] || ""}
+                // placeholder='eg. Responsibilities and achievements.'
+              />
+            </React.Fragment>
+          );
+        })}
         <button>hit me</button>
       </form>
     );

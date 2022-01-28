@@ -1,70 +1,80 @@
 import React, { Component } from "react";
 import Subsection from "./Subsection";
 import Entry from "./EntryWrapper";
+import EntryForm from "./EntryForm";
 import { exampleData as data } from "../example_data2";
-import { barSeperatedList } from "./tools";
-import { genID } from "../idGenerator";
+import { barSeperatedList, genID } from "./tools";
+import PopupOverlay from "./PopupOverlay";
 
 export default class Education extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      idUnderEdit: null,
+      formPopup: false,
       items: [...data.education],
     };
   }
-  // EDUCATION //
-  // section header
-  // button:
-  //  - visable when mouse over section
-  //  - add to list
-  // list
-  //  - date
-  //  - level / institution / location
-  //  - description
-  //  - button:
-  //    - visable when mouse over list item
-  //    - edit item -> popup, form updates state
-  //  - button:
-  //    - visable when mouse over list item
-  //    - delete item -> removes item matching id from state
-  // com
 
   ids = genID();
 
-  exampleItem1 = {
-    id: "test0",
-    startDate: "01/01/1000",
-    endDate: "01/01/2000",
-    descriptor: "degree",
-    institution: "uni",
-    location: "location",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
-        incididunt ut labore et dolore magna aliqua.",
+  itemTemplate = [
+    {
+      name: "startDate",
+      type: "date",
+      label: "Start Date",
+    },
+    {
+      name: "endDate",
+      type: "date",
+      label: "End Date",
+    },
+    {
+      name: "descriptor",
+      type: "text",
+      label: "Qualification",
+    },
+    {
+      name: "institution",
+      type: "text",
+      label: "Institution",
+    },
+    {
+      name: "location",
+      type: "text",
+      label: "Location",
+    },
+    {
+      name: "description",
+      type: "textarea",
+      label: "Description",
+    },
+  ];
+
+  toggleFormPopup = (id) => {
+    this.setState((prevState) => ({
+      idUnderEdit: id,
+      formPopup: !prevState.formPopup,
+    }));
   };
 
-  exampleItem2 = {
-    id: "test1",
-    startDate: "02/02/2222",
-    endDate: "02/02/2222",
-    descriptor: "New qual",
-    institution: "school",
-    location: "place",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
-        incididunt ut labore et dolore magna aliqua.",
+  handleFormSubmit = (e, itemId, item) => {
+    e.preventDefault();
+    if (this.state.items.some((item) => item.id === itemId)) {
+      this.editItem(itemId, item);
+    } else {
+      this.addItem(item);
+    }
   };
 
-  addItem = (newItem) => {
-    newItem = { ...this.exampleItem1 };
-    newItem["id"] = this.ids.newID();
+  addItem = (newItem, id) => {
+    newItem["id"] = id ?? this.ids.newID();
     this.setState((prevState) => ({
       items: [...prevState.items, newItem],
     }));
   };
 
   editItem = (id, newItem) => {
-    newItem = { ...this.exampleItem2 };
     newItem.id = id;
     this.setState((prevState) => ({
       items: [
@@ -114,8 +124,8 @@ export default class Education extends Component {
           key={id}
           id={id}
           content={content}
-          editItem={(idForEdit, item) => {
-            this.editItem(idForEdit, item);
+          editItem={(idForEdit) => {
+            this.toggleFormPopup(idForEdit);
           }}
           removeItem={(idForRemoval) => {
             this.removeItem(idForRemoval);
@@ -124,13 +134,33 @@ export default class Education extends Component {
       );
     });
 
+    console.log({ id2: this.state.idUnderEdit });
     return (
-      <Subsection
-        title={"Education"}
-        addEntryHandler={true} // add handler?
-        content={entries}
-        addItem={this.addItem}
-      />
+      <>
+        {this.state.formPopup && (
+          <PopupOverlay
+            content={
+              <EntryForm
+                formHeader={"Education"}
+                itemId={this.state.idUnderEdit}
+                itemTemplate={this.itemTemplate}
+                formSubmitHandler={this.handleFormSubmit}
+                togglePopup={this.toggleFormPopup}
+                existingEntry={this.state.items.find(
+                  (item) => item.id === this.state.idUnderEdit
+                )}
+              />
+            }
+            togglePopup={this.toggleFormPopup}
+          />
+        )}
+        <Subsection
+          title={"Education"}
+          addEntryHandler={true} // add handler?
+          content={entries}
+          addItem={() => this.toggleFormPopup(this.ids.newID())}
+        />
+      </>
     );
   }
 }

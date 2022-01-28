@@ -39,7 +39,11 @@ export default class Section extends Component {
                 state.buttonHidden ? "hidden" : ""
               }`}
               type='button'
-              // onClick={this.togglePopup}
+              onClick={() => {
+                // fire popup with
+                //  - form
+                //  - addItem
+              }}
               onClick={() => props.addItem()}
             >
               ➕

@@ -68,25 +68,33 @@ body {
 }
 
 .entry--wrapper {
+  width: 100%;
   display: flex;
   align-items: baseline;
   gap: 12px;
   padding-bottom: 5px;
+  /* border: solid red 1px; */
+}
+
+.entry--content {
+  flex: 1;
 }
 
 .entry {
+  /* border: solid blue 1px; */
   display: flex;
   align-items: baseline;
   gap: 12px;
 }
 
 .entry--sidebar {
-  /* flex-shrink: 0; */
+  flex-basis: 12%;
   font-size: xx-small;
 }
 
 .entry--details {
-  /* border: 1px blue solid; */
+  /* border: 1px green solid; */
+  flex-basis: 88%;
 }
 
 .entry--details-title {
@@ -98,14 +106,15 @@ body {
 }
 
 .entry--buttons {
-  width: 75px;
+  /* border: 1px purple solid; */
+  width: 38px;
   display: flex;
   justify-content: center;
   align-items: baseline;
   gap: 5px;
 }
 
-.editButton, 
+.editButton,
 .deleteButton {
   border-style: none;
   background-color: transparent;
@@ -135,7 +144,7 @@ body {
 .popup-container {
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   box-shadow: 0 0 14px 4px var(--theme3);
 }
 
