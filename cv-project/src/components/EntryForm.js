@@ -30,13 +30,21 @@ export default class EntryForm extends Component {
           return (
             <React.Fragment key={name}>
               <label htmlFor={name}>{label}</label>
-              <input
-                type={type}
-                name={name}
-                onChange={this.handleChange}
-                value={this.state[name] || ""}
-                // placeholder='eg. Responsibilities and achievements.'
-              />
+              {type === "textarea" ? (
+                <textarea
+                  name={name}
+                  onChange={this.handleChange}
+                  value={this.state[name] || ""}
+                />
+              ) : (
+                <input
+                  type={type}
+                  name={name}
+                  onChange={this.handleChange}
+                  value={this.state[name] || ""}
+                  // placeholder='eg. Responsibilities and achievements.'
+                />
+              )}
             </React.Fragment>
           );
         })}

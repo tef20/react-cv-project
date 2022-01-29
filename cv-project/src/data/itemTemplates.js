@@ -23,13 +23,13 @@ const templates = {
     {
       name: "picture",
       type: "text",
-      label: "picture",
+      label: "Picture URL",
     },
   ],
   profile: [
     {
       name: "description",
-      type: "text",
+      type: "textarea",
       label: "Description",
     },
   ],

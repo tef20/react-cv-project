@@ -163,6 +163,11 @@ form {
   color: var(--theme1);
 }
 
+textarea {
+  font-family: inherit;
+  font-size: small;
+}
+
 .hidden {
   display: none !important;
 }
