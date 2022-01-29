@@ -32,22 +32,28 @@ export default class Entry extends Component {
       >
         <div className='entry--content'>{content}</div>
         <div className={"entry--buttons"}>
-          <button
-            type='button'
-            className={`editButton ${this.state.buttonHidden ? "hidden" : ""}`}
-            onClick={() => this.props.editItem(id)}
-          >
-            ✏️
-          </button>
-          <button
-            type='button'
-            className={`deleteButton ${
-              this.state.buttonHidden ? "hidden" : ""
-            }`}
-            onClick={() => this.props.removeItem(id)}
-          >
-            ❌
-          </button>
+          {this.props.editItem && (
+            <button
+              type='button'
+              className={`editButton ${
+                this.state.buttonHidden ? "hidden" : ""
+              }`}
+              onClick={() => this.props.editItem(id)}
+            >
+              ✏️
+            </button>
+          )}
+          {this.props.removeItem && (
+            <button
+              type='button'
+              className={`deleteButton ${
+                this.state.buttonHidden ? "hidden" : ""
+              }`}
+              onClick={() => this.props.removeItem(id)}
+            >
+              ❌
+            </button>
+          )}
         </div>
       </div>
     );

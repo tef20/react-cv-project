@@ -26,6 +26,13 @@ const templates = {
       label: "picture",
     },
   ],
+  profile: [
+    {
+      name: "description",
+      type: "text",
+      label: "Description",
+    },
+  ],
   employment: [
     {
       name: "startDate",

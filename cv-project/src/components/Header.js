@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import EntryForm from "./EntryForm";
-import templates from "./itemTemplates";
-import { exampleData as data } from "../example_data";
+import templates from "../data/itemTemplates";
+import { exampleData as data } from "../data/example_data";
 import profilePic from "../images/blank_avatar.webp";
 import { genID, toggleState } from "./tools";
 import PopupOverlay from "./PopupOverlay";
-import { handleFormSubmit } from "./formTools";
+import { editItem, handleFormSubmit, toggleFormPopup } from "./formTools";
 
 export default class BasicInfo extends Component {
   constructor(props) {
@@ -14,25 +14,19 @@ export default class BasicInfo extends Component {
       idUnderEdit: null,
       buttonHidden: true,
       formPopup: false,
-      item: { ...data.basicInfo },
+      items: [...data.basicInfo],
     };
 
     this.handleFormSubmit = handleFormSubmit.bind(this);
+    this.toggleFormPopup = toggleFormPopup.bind(this);
+    this.editItem = editItem.bind(this);
     this.toggleState = toggleState.bind(this);
   }
 
-  ids = genID();
-
-  editItem = (id, newItem) => {
-    this.setState((prevState) => ({}));
-  };
-
   toggleButtonHidden = (value) => this.toggleState("buttonHidden", value);
-  toggleFormPopup = (value) => this.toggleState("formPopup", value);
 
   render() {
-    console.log({ state: this.state });
-    const { id, name, jobTitle, phone, email, picture } = this.state.item;
+    const { id, name, jobTitle, phone, email, picture } = this.state.items[0];
 
     const content = (
       <section
@@ -52,13 +46,17 @@ export default class BasicInfo extends Component {
           <p className='header--phone'>{phone}</p>
           <p className='header--email'>{email}</p>
         </div>
-        <button
-          type='button'
-          className={`editButton ${this.state.buttonHidden ? "hidden" : ""}`}
-          onClick={() => this.toggleFormPopup(id)}
-        >
-          ✏️
-        </button>
+        <div className='headerEditButtonBar'>
+          <button
+            type='button'
+            className={`editButton header ${
+              this.state.buttonHidden ? "hidden" : ""
+            }`}
+            onClick={() => this.toggleFormPopup(id)}
+          >
+            ✏️
+          </button>
+        </div>
         <div className='header--profile-pic-container'>
           <img
             className='header--profile-pic'
@@ -75,10 +73,16 @@ export default class BasicInfo extends Component {
           <PopupOverlay
             content={
               <EntryForm
-                formHeader={"Basic Information"}
+                formHeader={"Basic Info"}
+                itemId={id}
                 itemTemplate={templates["basicInfo"]}
                 togglePopup={this.toggleFormPopup}
-                existingEntry={this.state.item}
+                formSubmitHandler={(e, idForEdit, updatedItem) => {
+                  e.preventDefault();
+                  this.editItem(idForEdit, updatedItem);
+                  this.toggleFormPopup();
+                }}
+                existingEntry={this.state.items[0]}
               />
             }
             togglePopup={this.toggleFormPopup}

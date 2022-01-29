@@ -121,8 +121,15 @@ body {
   cursor: pointer;
 }
 
-.hidden {
-  display: none;
+.editButton.header {
+  font-size: large;
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .faded {
@@ -157,4 +164,8 @@ form {
   border-radius: 4px;
   background-color: var(--theme2);
   color: var(--theme1);
+}
+
+.hidden {
+  display: none !important;
 }

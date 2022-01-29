@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import EditPopup from "./EditPopup";
 import { capitalize } from "./tools";
 
 export default class Section extends Component {

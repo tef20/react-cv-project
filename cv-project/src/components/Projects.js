@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Subsection from "./Subsection";
 import Entry from "./EntryWrapper";
 import EntryForm from "./EntryForm";
-import templates from "./itemTemplates";
-import { exampleData as data } from "../example_data";
+import templates from "../data/itemTemplates";
+import { exampleData as data } from "../data/example_data";
 import { barSeperatedList, capitalize, genID } from "./tools";
 import PopupOverlay from "./PopupOverlay";
 import {
