@@ -3,7 +3,7 @@ import EntryForm from "./EntryForm";
 import templates from "../data/itemTemplates";
 import { exampleData as data } from "../data/example_data";
 import profilePic from "../images/blank_avatar.webp";
-import { genID, toggleState } from "./tools";
+import { toggleState } from "./tools";
 import PopupOverlay from "./PopupOverlay";
 import { editItem, handleFormSubmit, toggleFormPopup } from "./formTools";
 
@@ -60,7 +60,7 @@ export default class BasicInfo extends Component {
         <div className='header--profile-pic-container'>
           <img
             className='header--profile-pic'
-            src={profilePic || picture}
+            src={picture || profilePic}
             alt='profile pic'
           />
         </div>

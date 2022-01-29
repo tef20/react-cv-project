@@ -98,7 +98,7 @@ export default class Education extends Component {
         )}
         <Subsection
           title={"Education"}
-          addEntryHandler={true} // add handler?
+          addEntryHandler={true} 
           content={entries}
           addItem={() => this.toggleFormPopup(this.ids.newID())}
         />

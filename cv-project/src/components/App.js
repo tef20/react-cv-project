@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Education from "./Education";
 import Employment from "./Employment";
-import BasicInfo from "./Header";
+import BasicInfo from "./BasicInfo";
 import Profile from "./Profile";
 import Projects from "./Projects";
 

@@ -11,7 +11,7 @@ export const exampleData = {
       jobTitle: "Schmoe Consultant",
       phone: "+447890123456",
       email: "schmoej@email.com",
-      picture: "www.example.com",
+      picture: "",
     },
   ],
   profile: [

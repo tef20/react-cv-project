@@ -4,7 +4,7 @@ import Entry from "./EntryWrapper";
 import EntryForm from "./EntryForm";
 import templates from "../data/itemTemplates";
 import { exampleData as data } from "../data/example_data";
-import { barSeperatedList, capitalize, genID } from "./tools";
+import { capitalize, genID } from "./tools";
 import PopupOverlay from "./PopupOverlay";
 import {
   addItem,
@@ -36,11 +36,7 @@ export default class Projects extends Component {
     const entries = this.state.items.map((item) => {
       const {
         id,
-        startDate,
-        endDate,
         descriptor,
-        institution,
-        location,
         description,
       } = item;
 
@@ -91,7 +87,7 @@ export default class Projects extends Component {
         )}
         <Subsection
           title={"Projects"}
-          addEntryHandler={true} // add handler?
+          addEntryHandler={true} 
           content={entries}
           addItem={() => this.toggleFormPopup(this.ids.newID())}
         />

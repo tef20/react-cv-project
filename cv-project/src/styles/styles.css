@@ -64,6 +64,7 @@ body {
 
 .header--profile-pic {
   width: 150px;
+  height: 150px;
   border-radius: 50%;
 }
 
@@ -73,7 +74,6 @@ body {
   align-items: baseline;
   gap: 12px;
   padding-bottom: 5px;
-  /* border: solid red 1px; */
 }
 
 .entry--content {
@@ -81,7 +81,6 @@ body {
 }
 
 .entry {
-  /* border: solid blue 1px; */
   display: flex;
   align-items: baseline;
   gap: 12px;
@@ -93,7 +92,6 @@ body {
 }
 
 .entry--details {
-  /* border: 1px green solid; */
   flex-basis: 88%;
 }
 
@@ -106,7 +104,6 @@ body {
 }
 
 .entry--buttons {
-  /* border: 1px purple solid; */
   width: 38px;
   display: flex;
   justify-content: center;
