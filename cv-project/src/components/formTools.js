@@ -16,7 +16,7 @@ function handleFormSubmit(e, itemId, item) {
 }
 
 function addItem(newItem, id) {
-  newItem["id"] = id; 
+  newItem["id"] = id;
   this.setState((prevState) => ({
     items: [...prevState.items, newItem],
   }));
@@ -24,9 +24,7 @@ function addItem(newItem, id) {
 
 function editItem(id, newItem) {
   this.setState((prevState) => ({
-    items: [
-      ...prevState.items.map((item) => (item.id === id ? newItem : item)),
-    ],
+    items: prevState.items.map((item) => (item.id === id ? newItem : item)),
   }));
 }
 
