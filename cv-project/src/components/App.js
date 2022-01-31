@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-import Education from "./Education";
-import Employment from "./Employment";
 import BasicInfo from "./BasicInfo";
-import Profile from "./Profile";
-import Projects from "./Projects";
 import Subsection from "./Subsection2";
 import { exampleData } from "../data/example_data";
 
@@ -16,11 +12,14 @@ export default class App extends Component {
   }
 
   render() {
-    // const importData = this.state.importExampleData ? true : false;
     const { importExampleData } = this.state;
 
     return (
       <main className='page'>
+        {/* 
+        TODO: 
+        <ExampleDataToggle /> 
+        */}
         <label id='exampleToggleLabel' htmlFor='exampleDataToggle'>
           <span>Use Example Data:</span>
           <input
@@ -54,10 +53,6 @@ export default class App extends Component {
           type='list'
           importData={importExampleData ? exampleData["projects"] : null}
         />
-        {/* <Profile /> */}
-        {/* <Employment /> */}
-        {/* <Education /> */}
-        {/* <Projects /> */}
       </main>
     );
   }
