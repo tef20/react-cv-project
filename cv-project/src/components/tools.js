@@ -13,11 +13,11 @@ function barSeperatedList(...argsList) {
   return argsList.filter((elem) => elem).join(" | ");
 }
 
-function genID(lastID) {
+function genID(keyword, lastID) {
   // check for uniqueness / existing ID's in local storage
   let id = lastID || -1;
   function newID() {
-    return ++id;
+    return `${keyword ?? ''}${++id}`;
   }
   return { newID };
 }

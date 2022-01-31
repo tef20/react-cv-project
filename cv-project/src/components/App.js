@@ -18,7 +18,7 @@ export default class App extends Component {
   render() {
     // const importData = this.state.importExampleData ? true : false;
     const { importExampleData } = this.state;
-    
+
     return (
       <main className='page'>
         <label id='exampleToggleLabel' htmlFor='exampleDataToggle'>
@@ -37,15 +37,27 @@ export default class App extends Component {
         </label>
         <BasicInfo />
         <Subsection
+          id={"profile"}
+          title={"Profile"}
+          type='simple'
+          importData={importExampleData ? exampleData["profile"] : null}
+        />
+        <Subsection
+          id={"employment"}
+          title={"Employment"}
+          type='list'
+          importData={importExampleData ? exampleData["employment"] : null}
+        />
+        <Subsection
           id={"projects"}
-          name={"Projects"}
+          title={"Projects"}
           type='list'
           importData={importExampleData ? exampleData["projects"] : null}
         />
         {/* <Profile /> */}
-        <Employment />
-        <Education />
-        <Projects />
+        {/* <Employment /> */}
+        {/* <Education /> */}
+        {/* <Projects /> */}
       </main>
     );
   }

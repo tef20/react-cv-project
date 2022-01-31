@@ -6,8 +6,6 @@ export default class Section extends Component {
     super(props);
     this.state = {
       buttonHidden: true,
-      popupOverlay: false,
-      itemUnderEdit: "",
     };
   }
 
