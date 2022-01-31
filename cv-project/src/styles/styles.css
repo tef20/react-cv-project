@@ -9,6 +9,12 @@ body {
   background-color: rgb(233, 231, 231);
 }
 
+#exampleToggleLabel {
+  position: fixed;
+  top: 5px;
+  left: 5px;
+}
+
 .page {
   margin: 2% auto;
   width: 21cm;
