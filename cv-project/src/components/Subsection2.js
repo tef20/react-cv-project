@@ -23,16 +23,27 @@ export default class Subsection extends Component {
     }));
   };
 
-  toggleFormPopup = (id) => {
-    this.setState((prevState) => ({
-      idUnderEdit: id ?? null,
-      formPopup: !prevState.formPopup,
-    }));
+  callFormPopup = (itemId) => {
+    const { togglePopup, title, id } = this.props;
+    togglePopup(
+      <EntryForm
+        formHeader={title}
+        itemId={itemId}
+        itemTemplate={templates[id]}
+        formSubmitHandler={this.handleFormSubmit}
+        togglePopup={this.toggleFormPopup}
+        existingEntry={this.state.items.find((item) => item.id === itemId)}
+      />
+    );
+    // this.setState((prevState) => ({
+    //   idUnderEdit: id ?? null,
+    // formPopup: !prevState.formPopup,
+    // }));
   };
 
   handleAddItem = () => {
     const newId = this.ids.newID();
-    this.toggleFormPopup(newId);
+    this.callFormPopup(newId);
   };
 
   handleFormSubmit = (e, itemId, item) => {
@@ -42,7 +53,7 @@ export default class Subsection extends Component {
     } else {
       this.addItem(item, itemId);
     }
-    this.toggleFormPopup();
+    this.props.togglePopup();
   };
 
   addItem = (item, id) => {
@@ -102,28 +113,11 @@ export default class Subsection extends Component {
         onMouseOver={() => this.toggleHideAddButton(false)}
         onMouseOut={() => this.toggleHideAddButton(true)}
       >
-        {this.state.formPopup && (
-          <PopupOverlay
-            content={
-              <EntryForm
-                formHeader={props.title}
-                itemId={state.idUnderEdit}
-                itemTemplate={templates[props.id]}
-                formSubmitHandler={this.handleFormSubmit}
-                togglePopup={this.toggleFormPopup}
-                existingEntry={this.state.items.find(
-                  (item) => item.id === this.state.idUnderEdit
-                )}
-              />
-            }
-            togglePopup={this.toggleFormPopup}
-          />
-        )}
         <div className='section--header'>
           {props.title && (
             <h2 className='section--header-title'>{props.title}</h2>
           )}
-          {props.type === "list" && (
+          {(props.type === "list" || !state.items.length) && (
             <button
               className={`section--header-add ${
                 state.hideAddButton ? "hidden" : ""
@@ -142,13 +136,34 @@ export default class Subsection extends Component {
                 key={item.id}
                 section={props.id}
                 item={item}
-                onEdit={() => this.toggleFormPopup(item.id)}
-                onRemove={() => this.removeItem(item.id)}
+                onEdit={() => this.callFormPopup(item.id)}
+                onRemove={
+                  props.type === "list"
+                    ? () => this.removeItem(item.id)
+                    : undefined
+                }
               />
             ))}
           </div>
         ) : (
           <p className='faded'>{`${props.title} details go here...`}</p>
+        )}
+        {this.state.formPopup && (
+          <PopupOverlay
+            content={
+              <EntryForm
+                formHeader={props.title}
+                itemId={state.idUnderEdit}
+                itemTemplate={templates[props.id]}
+                formSubmitHandler={this.handleFormSubmit}
+                togglePopup={this.toggleFormPopup}
+                existingEntry={this.state.items.find(
+                  (item) => item.id === this.state.idUnderEdit
+                )}
+              />
+            }
+            togglePopup={this.toggleFormPopup}
+          />
         )}
       </section>
     );
