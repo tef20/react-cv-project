@@ -3,7 +3,8 @@ import BasicInfo from "./BasicInfo";
 import Subsection from "./Subsection2";
 import { exampleData } from "../data/example_data";
 import PopupOverlay from "./PopupOverlay";
-import EntryForm from "./EntryForm";
+import ExampleToggle from "./ExampleToggle";
+import { toggleState } from "./tools";
 
 export default class App extends Component {
   constructor() {
@@ -13,6 +14,7 @@ export default class App extends Component {
       showPopup: false,
       popupContent: null,
     };
+    this.toggleState = toggleState.bind(this);
   }
 
   togglePopup = (content) => {
@@ -22,28 +24,13 @@ export default class App extends Component {
 
   render() {
     const { importExampleData } = this.state;
-    console.log(this.state);
 
     return (
       <main className='page'>
-        {/* 
-        TODO: 
-        <ExampleDataToggle /> 
-        */}
-        <label id='exampleToggleLabel' htmlFor='exampleDataToggle'>
-          <span>Use Example Data:</span>
-          <input
-            type='checkbox'
-            name='exampleDataToggle'
-            id='exampleDataToggle'
-            checked={this.state.importExampleData}
-            onChange={() =>
-              this.setState((prevState) => ({
-                importExampleData: !prevState.importExampleData,
-              }))
-            }
-          />
-        </label>
+        <ExampleToggle
+          checkValue={importExampleData}
+          handleClick={() => this.toggleState("importExampleData")}
+        />
         <BasicInfo />
         <Subsection
           id={"profile"}
@@ -73,6 +60,6 @@ export default class App extends Component {
           />
         )}
       </main>
-    ); //
+    ); 
   }
 }
