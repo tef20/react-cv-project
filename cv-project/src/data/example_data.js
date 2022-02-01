@@ -1,9 +1,4 @@
 export const exampleData = {
-  // taxonomy:
-  //  - basic info: object
-  //  - sections: array
-  //    - item: object, types: blurb (text only), list (array of entries)
-  //      - entry: object, types: simple (title, main), complex (date, title (position / descriptor, institution, location), main)
   basicInfo: [
     {
       id: "basicinfo0",

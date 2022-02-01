@@ -30,7 +30,14 @@ export default class App extends Component {
           checkValue={importExampleData}
           handleClick={() => this.toggleState("importExampleData")}
         />
-        <BasicInfo />
+        {/* <BasicInfo togglePopup={(formContent) => this.togglePopup(formContent)} /> */}
+        <Subsection
+          id={"basicInfo"}
+          title={"Basic Info"}
+          type='header'
+          importData={importExampleData ? exampleData["basicInfo"] : null}
+          togglePopup={(formContent) => this.togglePopup(formContent)}
+        />
         <Subsection
           id={"profile"}
           title={"Profile"}

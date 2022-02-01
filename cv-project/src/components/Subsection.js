@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import templates from "../data/itemTemplates";
 import EntryForm from "./EntryForm";
 import Entry from "./EntryWrapper";
+import SectionHeader from "./SectionHeader";
 import { genID, toggleState } from "./tools";
 
 export default class Subsection extends Component {
@@ -11,7 +12,6 @@ export default class Subsection extends Component {
       hideAddButton: true,
       items: [],
       idUnderEdit: null,
-      // popupOverlay: false,
     };
     this.ids = genID(this.props.id);
     this.toggleState = toggleState.bind(this);
@@ -105,23 +105,16 @@ export default class Subsection extends Component {
         onMouseOver={() => this.toggleHideAddButton(false)}
         onMouseOut={() => this.toggleHideAddButton(true)}
       >
-        <div className='section--header'>
-          {props.title && (
-            <h2 className='section--header-title'>{props.title}</h2>
-          )}
-          {(props.type === "list" || !state.items.length) && (
-            <button
-              className={`section--header-add ${
-                state.hideAddButton ? "hidden" : ""
-              }`}
-              type='button'
-              onClick={() => this.handleAddItem()}
-            >
-              ➕
-            </button>
-          )}
-        </div>
-        {state.items?.length ? (
+        {props.type !== "header" && (
+          <SectionHeader
+            title={props.title}
+            type={props.type}
+            items={state.items}
+            hideAddButton={state.hideAddButton}
+            handleAddItem={this.handleAddItem}
+          />
+        )}
+        {state.items.length ? (
           <div className='section--content'>
             {state.items.map((item) => (
               <Entry
