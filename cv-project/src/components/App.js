@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import BasicInfo from "./BasicInfo";
-import Subsection from "./Subsection2";
+import Subsection from "./Subsection";
 import { exampleData } from "../data/example_data";
 import PopupOverlay from "./PopupOverlay";
 import ExampleToggle from "./ExampleToggle";
@@ -18,7 +18,6 @@ export default class App extends Component {
   }
 
   togglePopup = (content) => {
-    console.log(content);
     this.setState({ showPopup: !!content, popupContent: content ?? null });
   };
 

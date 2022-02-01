@@ -82,6 +82,7 @@ body {
 
 .entry--wrapper {
   width: 100%;
+  min-height: 1em;
   display: flex;
   align-items: baseline;
   gap: 12px;

@@ -1,46 +1,142 @@
 import React, { Component } from "react";
-import { capitalize } from "./tools";
+import templates from "../data/itemTemplates";
+import EntryForm from "./EntryForm";
+import Entry from "./EntryWrapper";
+import { genID, toggleState } from "./tools";
 
-export default class Section extends Component {
+export default class Subsection extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      buttonHidden: true,
+      hideAddButton: true,
+      items: [],
+      idUnderEdit: null,
+      // popupOverlay: false,
     };
+    this.ids = genID(this.props.id);
+    this.toggleState = toggleState.bind(this);
   }
 
-  toggleHideAddButton = (e, hidden) => {
+  toggleHideAddButton = (hidden) => {
+    this.toggleState("hideAddButton", hidden);
+  };
+
+  callFormPopup = (itemId) => {
+    const { togglePopup, title, id } = this.props;
+    togglePopup(
+      <EntryForm
+        formHeader={title}
+        itemId={itemId}
+        itemTemplate={templates[id]}
+        formSubmitHandler={this.handleFormSubmit}
+        togglePopup={this.toggleFormPopup}
+        existingEntry={this.state.items.find((item) => item.id === itemId)}
+      />
+    );
+  };
+
+  handleAddItem = () => {
+    const newId = this.ids.newID();
+    this.callFormPopup(newId);
+  };
+
+  handleFormSubmit = (e, itemId, item) => {
+    e.preventDefault();
+    if (this.state.items.some((item) => item.id === itemId)) {
+      this.editItem(itemId, item);
+    } else {
+      this.addItem(item, itemId);
+    }
+    this.props.togglePopup();
+  };
+
+  addItem = (item, id) => {
+    item["id"] = id;
     this.setState((prevState) => ({
-      buttonHidden: hidden ?? !prevState.buttonHidden,
+      items: [...prevState.items, item],
     }));
   };
+
+  removeItem = (id) => {
+    this.setState((prevState) => ({
+      items: prevState.items.filter((item) => item.id !== id),
+    }));
+  };
+
+  editItem = (id, newItem) => {
+    this.setState((prevState) => ({
+      items: prevState.items.map((item) => (item.id === id ? newItem : item)),
+    }));
+  };
+
+  mapItemsWithIds = (itemsArr) => {
+    return itemsArr.map((newItem) => {
+      const newItemId = this.ids.newID();
+      return {
+        ...newItem,
+        id: newItem.id || newItemId,
+      };
+    });
+  };
+
+  componentDidMount() {
+    this.setState({
+      items: this.props.importData
+        ? this.mapItemsWithIds(this.props.importData)
+        : [],
+    });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.importData !== this.props.importData) {
+      this.setState({
+        items: this.props.importData
+          ? this.mapItemsWithIds(this.props.importData)
+          : [],
+      });
+    }
+  }
 
   render() {
     const { props, state } = this;
     return (
       <section
-        className='section'
-        onMouseOver={(e) => this.toggleHideAddButton(e, false)}
-        onMouseOut={(e) => this.toggleHideAddButton(e, true)}
+        className={`section ${props.id}`}
+        onMouseOver={() => this.toggleHideAddButton(false)}
+        onMouseOut={() => this.toggleHideAddButton(true)}
       >
         <div className='section--header'>
           {props.title && (
-            <h2 className='section--header-title'>{capitalize(props.title)}</h2>
+            <h2 className='section--header-title'>{props.title}</h2>
           )}
-          {props.addEntryHandler && (
+          {(props.type === "list" || !state.items.length) && (
             <button
               className={`section--header-add ${
-                state.buttonHidden ? "hidden" : ""
+                state.hideAddButton ? "hidden" : ""
               }`}
               type='button'
-              onClick={() => props.addItem()}
+              onClick={() => this.handleAddItem()}
             >
               ➕
             </button>
           )}
         </div>
-        {props.content?.length ? (
-          <div className='section--content'>{props.content}</div>
+        {state.items?.length ? (
+          <div className='section--content'>
+            {state.items.map((item) => (
+              <Entry
+                key={item.id}
+                section={props.id}
+                item={item}
+                onEdit={() => this.callFormPopup(item.id)}
+                onRemove={
+                  props.type === "list"
+                    ? () => this.removeItem(item.id)
+                    : undefined
+                }
+              />
+            ))}
+          </div>
         ) : (
           <p className='faded'>{`${props.title} details go here...`}</p>
         )}

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import DatedEntry from "./entryTemplates/DatedEntry";
-import NamedEntry from "./entryTemplates/NamedEntry";
-import SimpleEntry from "./entryTemplates/SimpleEntry";
+import EntryContent from "./EntryContent";
+import { toggleState } from "./tools";
 
 export default class Entry extends Component {
   constructor(props) {
@@ -9,47 +8,13 @@ export default class Entry extends Component {
     this.state = {
       buttonHidden: true,
     };
+    this.toggleState = toggleState.bind(this);
   }
-
-  toggleState = (key, value) => {
-    this.setState((prevState) => ({
-      [key]: value ?? !prevState[key],
-    }));
-  };
 
   toggleButtonHidden = (value) => this.toggleState("buttonHidden", value);
 
   render() {
     const { section, item, onEdit, onRemove } = this.props;
-    // if (section === 'education')
-
-    let content;
-    switch (section) {
-      case "education":
-      case "employment":
-        content = (
-          <DatedEntry
-            startDate={item.startDate}
-            endDate={item.endDate}
-            descriptor={item.descriptor}
-            institution={item.institution}
-            location={item.location}
-            description={item.description}
-          />
-        );
-        break;
-      case "projects":
-        content = (
-          <NamedEntry
-            descriptor={item.descriptor}
-            description={item.description}
-          />
-        );
-        break;
-      default:
-        content = <SimpleEntry description={item.description} />;
-        break;
-    }
 
     return (
       <div
@@ -63,7 +28,9 @@ export default class Entry extends Component {
           this.toggleButtonHidden(true);
         }}
       >
-        <div className='entry--content'>{content}</div>
+        <div className='entry--content'>
+          <EntryContent section={section} item={item} />
+        </div>
         <div className={"entry--buttons"}>
           {onEdit && (
             <button
