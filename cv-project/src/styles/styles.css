@@ -11,8 +11,13 @@ body {
 
 #exampleToggleLabel {
   position: fixed;
-  top: 5px;
-  left: 5px;
+  top: 9px;
+  left: 9px;
+  padding: 7px;
+  display: flex;
+  gap: 9px;
+  border-radius: 3px;
+  background-color: rgba(150, 54, 52, 0.2);
 }
 
 .page {
@@ -85,6 +90,8 @@ body {
 
 .entry--content {
   flex: 1;
+  display: flex;
+  align-items: baseline;
 }
 
 .entry {

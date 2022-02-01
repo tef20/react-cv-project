@@ -6,8 +6,10 @@ export default function EntriesTemplate(props) {
   return (
     <>
       {aside && <div className='entry--sidebar'>{aside}</div>}
-      {top && <div className='entry--top'>{top}</div>}
-      {main && <div className='entry--main'>{main}</div>}
+      <div className="entry--details">
+        {top && <div className='entry--top'>{top}</div>}
+        {main && <div className='entry--main'>{main}</div>}
+      </div>
     </>
   );
 }
